@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "874039805778",
+    "project_id": "chefswipe",
+    "storage_bucket": "chefswipe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:874039805778:android:653b9b444991ea64d99c8b",
+        "android_client_info": {
+          "package_name": "com.example.chefswipe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "874039805778-13o16fdbfks2bm9v2d046d5bltkh88e8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqaghdtAZk7ubZkabayZlKyxKIsMeIews"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "874039805778-13o16fdbfks2bm9v2d046d5bltkh88e8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
