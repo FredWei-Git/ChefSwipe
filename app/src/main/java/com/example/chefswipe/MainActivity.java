@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity implements
     private void updateUI(FirebaseUser user) {
         //Check if user is signed in or not
         if (user == null) {
-
+            findViewById(R.id.signInButton).setVisibility(View.VISIBLE);
         }else {
-
+            findViewById(R.id.signInButton).setVisibility(View.GONE);
         }
     }
 
