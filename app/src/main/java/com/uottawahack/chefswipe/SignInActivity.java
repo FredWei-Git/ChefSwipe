@@ -126,7 +126,7 @@ public class SignInActivity extends AppCompatActivity implements
         } else {
             findViewById(R.id.signInButton).setVisibility(View.GONE);
             // When there is currently a user that is signed in
-            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+            Intent intent = new Intent(getApplicationContext(), SwipeActivity.class);
             startActivity(intent);
         }
     }
