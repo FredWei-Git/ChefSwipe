@@ -1,4 +1,4 @@
-package com.example.chefswipe;
+package com.uottawahack.chefswipe;
 
 import androidx.appcompat.app.AppCompatActivity;
 

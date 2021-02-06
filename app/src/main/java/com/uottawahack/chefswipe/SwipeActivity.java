@@ -18,7 +18,6 @@ public class SwipeActivity extends AppCompatActivity {
         @Override
         public void onViewCaptured(@NonNull View capturedChild, int activePointerId) {
             super.onViewCaptured(capturedChild, activePointerId);
-            if (capturedChild == )
         }
 
         @Override
