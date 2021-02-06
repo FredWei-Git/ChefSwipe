@@ -28,7 +28,7 @@ public class SwipeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_swipe);
         String app_id = "3c7db970";
         String app_key = "b9151b2fbebd7585310c64eaf7373789";
-        /*String URL = "https://api.edamam.com/search?q=chicken&app_id=" + app_id + "&app_key=" + app_key + "&from=0&to=3&calories=591-722&health=alcohol-free";
+        String URL = "https://api.edamam.com/search?q=chicken&app_id=" + app_id + "&app_key=" + app_key + "&from=0&to=3&calories=591-722&health=alcohol-free";
         // request queue
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest objectRequest = new JsonObjectRequest(
@@ -49,7 +49,7 @@ public class SwipeActivity extends AppCompatActivity {
                 }
         );
         requestQueue.add(objectRequest);
-        */
+
         /* addRecipe = (Button) findViewById(R.id.addRecipeButton);
 
         addRecipe.setOnClickListener(new View.OnClickListener() {
