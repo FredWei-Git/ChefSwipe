@@ -1,4 +1,4 @@
-package com.example.chefswipe;
+package com.uottawahack.chefswipe;
 
 import org.junit.Test;
 

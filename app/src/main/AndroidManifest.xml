@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.chefswipe">
+    package="com.uottawahack.chefswipe">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
@@ -12,7 +12,8 @@
         android:theme="@style/Theme.ChefSwipe">
         <activity android:name=".AddRecipeActivity"></activity>
         <activity android:name=".HomeActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SwipeActivity"></activity>
+        <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
