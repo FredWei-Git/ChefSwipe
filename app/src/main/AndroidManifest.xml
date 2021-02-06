@@ -3,6 +3,7 @@
     package="com.uottawahack.chefswipe">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,9 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ChefSwipe">
-        <activity android:name=".AddRecipeActivity"></activity>
+        <activity android:name=".ListOfGroceries"></activity>
+        <activity android:name=".AddRecipeActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".SwipeActivity"></activity>
+        <activity android:name=".SwipeActivity" />
         <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
