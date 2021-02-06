@@ -21,17 +21,6 @@ public class SwipeActivity extends AppCompatActivity {
         //Update UI when data is changed
         vm.makeSwipeRequest("chicken", "alcohol-free");
 
-        /*
-        //addRecipe = (Button) findViewById(R.id.addRecipeButton);
-
-        addRecipe.setOnClickListener(new View.OnClickListener() {
-            // goes to add recipe page
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AddRecipeActivity.class);
-                startActivity(intent);
-            }
-        });
-        */
     }
     private class ViewDragHelperCallback extends ViewDragHelper.Callback{
         @Override
