@@ -126,6 +126,9 @@ public class MainActivity extends AppCompatActivity implements
             findViewById(R.id.signInButton).setVisibility(View.VISIBLE);
         } else {
             findViewById(R.id.signInButton).setVisibility(View.GONE);
+            // When there is currently a user that is signed in
+            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+            startActivity(intent);
         }
     }
 
