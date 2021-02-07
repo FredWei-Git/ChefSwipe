@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfilePage">
+
+    <RadioButton
+        android:id="@+id/lowFat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Low Fat"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="218dp" />
+
+    <RadioButton
+        android:id="@+id/balanced"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Balanced"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="157dp" />
+
+    <RadioButton
+        android:id="@+id/lowCarb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Low Carb"
+        tools:layout_editor_absoluteX="304dp"
+        tools:layout_editor_absoluteY="157dp" />
+
+    <RadioButton
+        android:id="@+id/vegan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vegan"
+        tools:layout_editor_absoluteX="304dp"
+        tools:layout_editor_absoluteY="362dp" />
+
+    <RadioButton
+        android:id="@+id/highProtein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="High Protein"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="157dp" />
+
+    <RadioButton
+        android:id="@+id/sugarConscious"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sugar-conscious"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="362dp" />
+
+    <RadioButton
+        android:id="@+id/treeNutFree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tree-Nut-Free"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="436dp" />
+
+    <RadioButton
+        android:id="@+id/vegetarian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vegetarian"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="362dp" />
+
+    <RadioButton
+        android:id="@+id/peanutFree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Peanut-Free"
+        tools:layout_editor_absoluteX="296dp"
+        tools:layout_editor_absoluteY="436dp" />
+
+    <RadioButton
+        android:id="@+id/alcoholFree"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alcohol Free"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="436dp" />
+
+    <TextView
+        android:id="@+id/macrosTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Macros"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="104dp" />
+
+    <TextView
+        android:id="@+id/editProfileTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Profile"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        tools:layout_editor_absoluteX="97dp"
+        tools:layout_editor_absoluteY="44dp" />
+
+    <TextView
+        android:id="@+id/allergiesAndLimitsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Allergies/Limits"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        tools:layout_editor_absoluteX="86dp"
+        tools:layout_editor_absoluteY="292dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
