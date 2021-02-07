@@ -8,20 +8,19 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/recipeCardView"
-        android:layout_width="match_parent"
-        android:layout_height="589dp"
-        android:layout_margin="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="63dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/infoButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/logoView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,7 +28,7 @@
 
             <ImageView
                 android:id="@+id/recipeImageView"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -63,12 +62,11 @@
         android:id="@+id/logoView"
         android:layout_width="64dp"
         android:layout_height="75dp"
-        app:layout_constraintBottom_toTopOf="@+id/recipeCardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toStartOf="@+id/settingsButton"
+        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_fork_plate_knife_svgrepo_com" />
 
     <Button
@@ -77,54 +75,50 @@
         android:layout_width="46dp"
         android:layout_height="54dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         app:icon="@drawable/ic_baseline_settings_24"
-        app:layout_constraintBottom_toTopOf="@+id/recipeCardView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.625" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/nextButton"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         android:layout_width="48dp"
         android:layout_height="52dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginLeft="88dp"
-        android:layout_marginTop="16dp"
         app:icon="@drawable/ic_outline_cancel_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipeCardView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toStartOf="@+id/infoButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/likeButton"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         android:layout_width="48dp"
         android:layout_height="52dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginRight="88dp"
         app:icon="@drawable/ic_baseline_thumb_up_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipeCardView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/infoButton" />
 
     <Button
         android:id="@+id/infoButton"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
         android:layout_width="48dp"
         android:layout_height="52dp"
-        android:layout_marginTop="16dp"
         app:icon="@drawable/ic_outline_info_24"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipeCardView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toStartOf="@+id/likeButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/nextButton" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="670dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
