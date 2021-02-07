@@ -34,33 +34,30 @@
                 android:id="@+id/recipeImageView"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="80dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars"
-                android:clickable="false"
-                android:focusable="false"/>
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/recipeNameView"
-                android:layout_width="119dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginTop="390dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
-                android:layout_marginBottom="32dp"
-                android:text="TextView"
-                app:layout_constraintBottom_toBottomOf="@+id/recipeImageView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.16"
-                app:layout_constraintStart_toStartOf="@+id/recipeImageView"
-                app:layout_constraintTop_toTopOf="@+id/recipeImageView"
-                app:layout_constraintVertical_bias="0.98"
+                android:layout_width="373dp"
+                android:layout_height="49dp"
+                android:layout_marginBottom="10dp"
                 android:clickable="false"
-                android:focusable="false"/>
+                android:focusable="false"
+                android:text="No Results"
+                android:textColor="@color/black"
+                android:textSize="38sp"
+                android:textFontWeight="40"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

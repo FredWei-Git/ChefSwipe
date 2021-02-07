@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class RecipeInfo<T> {
     // Variables
-    private String name, recipeURL, image;
+    private String name = "", recipeURL, image;
     private ArrayList<String> ingredients = new ArrayList<String>();
     private ArrayList<String> healthLabels = new ArrayList<String>();
 
@@ -19,7 +19,9 @@ public class RecipeInfo<T> {
 
     // Constructors
     private RecipeInfo() {
+        this.name = "no recipes found, refresh";
     }
+
 
     public RecipeInfo(JSONArray arr, JSONObject response) {
         try {
@@ -31,6 +33,9 @@ public class RecipeInfo<T> {
             int r = 0;
             // setting the name, recipeURL, ingredients, and healthLabels
             this.name = arr.getJSONObject(r).getJSONObject("recipe").getString("label");
+            if (this.name.equals("")){
+                this.name = "no recipes found, refresh";
+            }
             this.recipeURL = arr.getJSONObject(r).getJSONObject("recipe").getString("url");
             this.image = arr.getJSONObject(r).getJSONObject("recipe").getString("image");
             tempArray = arr.getJSONObject(r).getJSONObject("recipe").getJSONArray("ingredientLines");
