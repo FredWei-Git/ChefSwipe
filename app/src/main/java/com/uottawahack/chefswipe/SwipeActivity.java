@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.DragEvent;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import com.google.android.material.card.MaterialCardView;
 
@@ -33,10 +32,12 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
         vm.makeSwipeRequest("chicken", "alcohol-free");
         //Update UI when data is changed
         vm.getRecipe().observe(this, RecipeInfo -> {
-
+            updateUI();
         });
     }
+    private void updateUI(){
 
+    }
     private class ViewDragHelperCallback extends ViewDragHelper.Callback {
         @Override
         public void onViewCaptured(@NonNull View capturedChild, int activePointerId) {
@@ -56,7 +57,16 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
-        startActivity(intent);
+        int i = view.getId();
+        if (i == R.id.settingsButton) {
+            Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+            startActivity(intent);
+        }else if (i == R.id.likeButton){
+
+        }else if (i == R.id.nextButton){
+
+        }else if (i == R.id.infoButton){
+
+        }
     }
 }

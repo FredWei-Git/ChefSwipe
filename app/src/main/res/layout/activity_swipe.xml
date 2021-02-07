@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    app:layoutDescription="@xml/activity_swipe_scene"
     tools:context=".SwipeActivity">
 
     <com.google.android.material.card.MaterialCardView
@@ -20,11 +21,14 @@
         app:layout_constraintBottom_toTopOf="@+id/infoButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logoView">
+        app:layout_constraintTop_toBottomOf="@+id/logoView"
+        android:foreground="?android:selectableItemBackground">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:focusable="false">
 
             <ImageView
                 android:id="@+id/recipeImageView"
@@ -34,7 +38,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars"
+                android:clickable="false"
+                android:focusable="false"/>
 
             <TextView
                 android:id="@+id/recipeNameView"
@@ -52,7 +58,9 @@
                 app:layout_constraintHorizontal_bias="0.16"
                 app:layout_constraintStart_toStartOf="@+id/recipeImageView"
                 app:layout_constraintTop_toTopOf="@+id/recipeImageView"
-                app:layout_constraintVertical_bias="0.98" />
+                app:layout_constraintVertical_bias="0.98"
+                android:clickable="false"
+                android:focusable="false"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -121,4 +129,4 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="670dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>
