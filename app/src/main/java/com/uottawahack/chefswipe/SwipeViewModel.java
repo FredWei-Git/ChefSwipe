@@ -22,9 +22,13 @@ import org.json.JSONObject;
 
 
 public class SwipeViewModel extends AndroidViewModel {
+    //Obtain context to query
     private static Context context;
 
+    //Mutable data
     private final MutableLiveData<RecipeInfo> recipeLiveData = new MutableLiveData<>();
+
+
     private String randomFood = "chicken";
     private SavedStateHandle state;
 
