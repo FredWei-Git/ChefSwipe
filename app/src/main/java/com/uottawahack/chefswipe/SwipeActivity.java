@@ -28,12 +28,17 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.card.MaterialCardView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class SwipeActivity extends AppCompatActivity implements View.OnClickListener {
@@ -41,6 +46,10 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
     private MaterialCardView card;
     // random food variable
     private String randomFood;
+    // firebase
+    FirebaseAuth mAuth = FirebaseAuth.getInstance(); //Grabs current instance of database
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,14 +69,16 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
             updateUI();
         });
     }
-    private void updateUI(){
+
+    private void updateUI() {
         RecipeInfo recipe = vm.getRecipe().getValue();
-        TextView recipeName = (TextView)findViewById(R.id.recipeNameView);
-        ImageView imageView = (ImageView)findViewById(R.id.recipeImageView);
+        TextView recipeName = (TextView) findViewById(R.id.recipeNameView);
+        ImageView imageView = (ImageView) findViewById(R.id.recipeImageView);
         new DownloadImageTask(imageView).execute(recipe.getImage());
 
         recipeName.setText(recipe.getName());
     }
+
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
@@ -116,15 +127,26 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
         if (i == R.id.settingsButton) {
             Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(intent);
-        }else if (i == R.id.likeButton){
-            ((MotionLayout)view.getParent()).transitionToEnd();
+        } else if (i == R.id.likeButton) {
+            // adding food to user's food database
+            if (mFirebaseUser != null) {
+                String user;
+                user = mFirebaseUser.getUid(); //Do what you need to do with the id
+                if (randomFood != null && vm.getRecipe().getValue().getRecipeURL() != null) {
+                    Map<String, Object> savedRecipes = new HashMap<>();
+                    savedRecipes.put("Recipe Name", randomFood);
+                    savedRecipes.put("Recipe Link", vm.getRecipe().getValue().getRecipeURL());
+                    db.collection("users").document(user).collection("SavedRecipes").document(randomFood).set(savedRecipes);
+                }
+            }
+            // Changes the food image
+            ((MotionLayout) view.getParent()).transitionToEnd();
             randomFood = vm.makeIngredientsRequest();
             vm.makeSwipeRequest(randomFood, "alcohol-free");
-
-        }else if (i == R.id.nextButton){
+        } else if (i == R.id.nextButton) {
             randomFood = vm.makeIngredientsRequest();
             vm.makeSwipeRequest(randomFood, "alcohol-free");
-        }else if (i == R.id.infoButton){
+        } else if (i == R.id.infoButton) {
             Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(intent);
         }
