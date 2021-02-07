@@ -17,6 +17,7 @@ public class ListOfGroceries extends AppCompatActivity {
     ListView show;
     Button saveInput;
     Button clear;
+    Button backBtn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,9 @@ public class ListOfGroceries extends AppCompatActivity {
             show.setAdapter(adapt);
 
         });
-
+        backBtn = (Button)findViewById(R.id.prevActivity);
+        backBtn.setOnClickListener(v -> {
+            onBackPressed();
+        });
     }
 }
