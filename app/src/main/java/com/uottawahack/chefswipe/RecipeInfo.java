@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class RecipeInfo<T> {
     // Variables
-    private String name, recipeURL;
+    private String name, recipeURL, image;
     private ArrayList<String> ingredients = new ArrayList<String>();
     private ArrayList<String> healthLabels = new ArrayList<String>();
 
@@ -20,16 +20,19 @@ public class RecipeInfo<T> {
     // Constructors
     private RecipeInfo() {
     }
+
     public RecipeInfo(JSONArray arr, JSONObject response) {
         try {
             // generating random number from first 10 results
-            int lower = 0;
-            int upper = 11;
+            /*int lower = 0;
+            int upper = 1;
             int r = (int) (Math.random() * (upper - lower)) + lower; //  lower (inclusive) and upper (exclusive)
-
+             */
+            int r = 0;
             // setting the name, recipeURL, ingredients, and healthLabels
             this.name = arr.getJSONObject(r).getJSONObject("recipe").getString("label");
             this.recipeURL = arr.getJSONObject(r).getJSONObject("recipe").getString("url");
+            this.image = arr.getJSONObject(r).getJSONObject("recipe").getString("image");
             tempArray = arr.getJSONObject(r).getJSONObject("recipe").getJSONArray("ingredientLines");
             for (int i = 0; i < tempArray.length(); i++) {
                 this.ingredients.add((String) tempArray.get(i));
@@ -41,6 +44,7 @@ public class RecipeInfo<T> {
             // Output random recipe generated
             Log.e(String.valueOf(r), name);
             Log.e(String.valueOf(r), recipeURL);
+            Log.e(String.valueOf(r), image);
             Log.e(String.valueOf(r), ingredients.get(0));
             Log.e(String.valueOf(r), healthLabels.get(0));
         } catch (JSONException e) {
@@ -56,7 +60,10 @@ public class RecipeInfo<T> {
 
     public String getRecipeURL() {
         return recipeURL;
+    }
 
+    public String getImage() {
+        return image;
     }
 
     public ArrayList<String> getIngredients() {
