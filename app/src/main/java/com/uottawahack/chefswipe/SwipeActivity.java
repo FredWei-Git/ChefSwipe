@@ -32,10 +32,9 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
         vm = new ViewModelProvider(this).get(SwipeViewModel.class);
         vm.makeSwipeRequest("chicken", "alcohol-free");
         //Update UI when data is changed
+        vm.getRecipe().observe(this, RecipeInfo -> {
 
-        /*vm.getRecipe().observe(this, RecipeInfo ->{
-
-        });*/
+        });
     }
 
     private class ViewDragHelperCallback extends ViewDragHelper.Callback {

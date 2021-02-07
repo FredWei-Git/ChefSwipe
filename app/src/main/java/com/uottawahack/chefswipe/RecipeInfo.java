@@ -20,7 +20,9 @@ public class RecipeInfo<T> {
     // Constructors
     private RecipeInfo() {
     }
+    public RecipeInfo(String mt){
 
+    }
     public RecipeInfo(JSONArray arr, JSONObject response) {
         try {
             // generating random number from first 10 results

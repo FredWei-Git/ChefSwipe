@@ -22,7 +22,7 @@ import org.json.JSONObject;
 public class SwipeViewModel extends AndroidViewModel {
     private static Context context;
 
-    private final MutableLiveData<RecipeInfo> recipeLiveData = null;
+    private final MutableLiveData<RecipeInfo> recipeLiveData = new MutableLiveData<>();
     private SavedStateHandle state;
 
     public SwipeViewModel(Application application) {
@@ -35,9 +35,6 @@ public class SwipeViewModel extends AndroidViewModel {
     }
 
     void makeSwipeRequest(String ingredients, String health) {
-        // Recipe Info
-        RecipeInfo ri;
-
         // API Search Information
         String app_id = "3c7db970";
         String app_key = "b9151b2fbebd7585310c64eaf7373789";
