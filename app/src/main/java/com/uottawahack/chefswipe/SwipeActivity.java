@@ -2,6 +2,7 @@ package com.uottawahack.chefswipe;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.core.view.MotionEventCompat;
 import androidx.customview.widget.ViewDragHelper;
 import androidx.lifecycle.Observer;
@@ -9,11 +10,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,65 +33,66 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.InputStream;
+
 
 public class SwipeActivity extends AppCompatActivity implements View.OnClickListener {
     private SwipeViewModel vm;
     private MaterialCardView card;
     // random food variable
-    private String randomFood = "chicken";
+    private String randomFood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipe);
         findViewById(R.id.settingsButton).setOnClickListener(this);
-
+        findViewById(R.id.likeButton).setOnClickListener(this);
+        findViewById(R.id.nextButton).setOnClickListener(this);
+        findViewById(R.id.infoButton).setOnClickListener(this);
         card = findViewById(R.id.recipeCardView);
         vm = new ViewModelProvider(this).get(SwipeViewModel.class);
-
-        // generating random food form random meal api
-        String URL = "https://www.themealdb.com/api/json/v1/1/random.php";
-        // request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest objectRequest = new JsonObjectRequest(
-                Request.Method.GET,
-                URL,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // generating random meal name from API
-                        JSONArray arr = null;
-                        try {
-                            arr = response.getJSONArray("meals");
-                            randomFood = arr.getJSONObject(0).getString("strMeal");
-                            // Call swipe request for random food.
-                            //Log.e("Random Meal", randomFood);
-                            vm.makeSwipeRequest(randomFood, "alcohol-free");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        Log.e("Random Meal", randomFood);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("Rest Response", error.toString());
-
-                    }
-                }
-        );
-        requestQueue.add(objectRequest);
-        // vm.makeSwipeRequest(randomFood, "alcohol-free");
+        randomFood = vm.makeIngredientsRequest();
+        vm.makeSwipeRequest(randomFood, "alcohol-free");
         //Update UI when data is changed
         vm.getRecipe().observe(this, RecipeInfo -> {
+
             updateUI();
         });
     }
     private void updateUI(){
+        RecipeInfo recipe = vm.getRecipe().getValue();
+        TextView recipeName = (TextView)findViewById(R.id.recipeNameView);
+        ImageView imageView = (ImageView)findViewById(R.id.recipeImageView);
+        new DownloadImageTask(imageView).execute(recipe.getImage());
 
+        recipeName.setText(recipe.getName());
     }
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+    }
+
     private class ViewDragHelperCallback extends ViewDragHelper.Callback {
         @Override
         public void onViewCaptured(@NonNull View capturedChild, int activePointerId) {
@@ -110,11 +117,16 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(intent);
         }else if (i == R.id.likeButton){
+            ((MotionLayout)view.getParent()).transitionToEnd();
+            randomFood = vm.makeIngredientsRequest();
+            vm.makeSwipeRequest(randomFood, "alcohol-free");
 
         }else if (i == R.id.nextButton){
-
+            randomFood = vm.makeIngredientsRequest();
+            vm.makeSwipeRequest(randomFood, "alcohol-free");
         }else if (i == R.id.infoButton){
-
+            Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+            startActivity(intent);
         }
     }
 }

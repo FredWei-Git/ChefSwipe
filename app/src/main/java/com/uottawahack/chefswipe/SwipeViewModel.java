@@ -10,9 +10,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +25,7 @@ public class SwipeViewModel extends AndroidViewModel {
     private static Context context;
 
     private final MutableLiveData<RecipeInfo> recipeLiveData = new MutableLiveData<>();
+    private String randomFood = "chicken";
     private SavedStateHandle state;
 
     public SwipeViewModel(Application application) {
@@ -33,6 +36,7 @@ public class SwipeViewModel extends AndroidViewModel {
     public LiveData<RecipeInfo> getRecipe() {
         return recipeLiveData;
     }
+
 
     void makeSwipeRequest(String ingredients, String health) {
         // API Search Information
@@ -69,5 +73,42 @@ public class SwipeViewModel extends AndroidViewModel {
                 }
         );
         SwipeRepository.getInstance(context).addToRequestQueue(objectRequest);
+    }
+
+    String makeIngredientsRequest(){
+        // generating random food form random meal api
+        String URL = "https://www.themealdb.com/api/json/v1/1/random.php";
+        // request queue
+        JsonObjectRequest objectRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                URL,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // generating random meal name from API
+                        JSONArray arr = null;
+                        try {
+                            arr = response.getJSONArray("meals");
+                            randomFood = arr.getJSONObject(0).getString("strMeal");
+                            // Call swipe request for random food.
+                            //Log.e("Random Meal", randomFood);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        Log.e("Random Meal", randomFood);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Rest Response", error.toString());
+
+                    }
+                }
+        );
+        SwipeRepository.getInstance(context).addToRequestQueue(objectRequest);
+        Log.e("Random Mealdsadsdasd", randomFood);
+        return randomFood;
     }
 }

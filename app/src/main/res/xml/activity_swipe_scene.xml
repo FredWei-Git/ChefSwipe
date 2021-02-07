@@ -27,7 +27,7 @@
         motion:constraintSetStart="@+id/start"
         motion:constraintSetEnd="@+id/end"
         motion:autoTransition="none" >
-        <OnClick motion:targetId="@+id/likeButton" />
+
     </Transition>
     <ConstraintSet android:id="@+id/endend" />
     <Transition
