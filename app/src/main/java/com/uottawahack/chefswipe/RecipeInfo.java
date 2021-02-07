@@ -20,16 +20,19 @@ public class RecipeInfo<T> {
     // Constructors
     private RecipeInfo() {
     }
-    public RecipeInfo(String mt){
+
+    public RecipeInfo(String mt) {
 
     }
+
     public RecipeInfo(JSONArray arr, JSONObject response) {
         try {
             // generating random number from first 10 results
-            int lower = 0;
-            int upper = 11;
+            /*int lower = 0;
+            int upper = 1;
             int r = (int) (Math.random() * (upper - lower)) + lower; //  lower (inclusive) and upper (exclusive)
-
+             */
+            int r = 0;
             // setting the name, recipeURL, ingredients, and healthLabels
             this.name = arr.getJSONObject(r).getJSONObject("recipe").getString("label");
             this.recipeURL = arr.getJSONObject(r).getJSONObject("recipe").getString("url");
