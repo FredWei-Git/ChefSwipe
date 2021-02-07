@@ -6,85 +6,125 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
 
-    <RadioButton
-        android:id="@+id/lowFat"
+    <CheckBox
+        android:id="@+id/lowFatSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Low Fat"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="218dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.326" />
 
-    <RadioButton
-        android:id="@+id/balanced"
+    <CheckBox
+        android:id="@+id/balancedSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Balanced"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="157dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.229" />
 
-    <RadioButton
-        android:id="@+id/lowCarb"
+    <CheckBox
+        android:id="@+id/lowCarbSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Low Carb"
-        tools:layout_editor_absoluteX="304dp"
-        tools:layout_editor_absoluteY="157dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.229" />
 
-    <RadioButton
-        android:id="@+id/vegan"
+    <CheckBox
+        android:id="@+id/veganSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Vegan"
-        tools:layout_editor_absoluteX="304dp"
-        tools:layout_editor_absoluteY="362dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.849"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53" />
 
-    <RadioButton
-        android:id="@+id/highProtein"
+    <CheckBox
+        android:id="@+id/highProteinSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="High Protein"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="157dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.229" />
 
-    <RadioButton
-        android:id="@+id/sugarConscious"
+    <CheckBox
+        android:id="@+id/sugarConsciousSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sugar-conscious"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="362dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53" />
 
-    <RadioButton
-        android:id="@+id/treeNutFree"
+    <CheckBox
+        android:id="@+id/treeNutFreeSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tree-Nut-Free"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="436dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.638" />
 
-    <RadioButton
-        android:id="@+id/vegetarian"
+    <CheckBox
+        android:id="@+id/vegetarianSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Vegetarian"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="362dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53" />
 
-    <RadioButton
-        android:id="@+id/peanutFree"
+    <CheckBox
+        android:id="@+id/peanutFreeSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Peanut-Free"
-        tools:layout_editor_absoluteX="296dp"
-        tools:layout_editor_absoluteY="436dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.638" />
 
-    <RadioButton
-        android:id="@+id/alcoholFree"
+    <CheckBox
+        android:id="@+id/alcoholFreeSwitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Alcohol Free"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="436dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.638" />
 
     <TextView
         android:id="@+id/macrosTitle"
@@ -92,8 +132,12 @@
         android:layout_height="wrap_content"
         android:text="Macros"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="104dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.129" />
 
     <TextView
         android:id="@+id/editProfileTitle"
@@ -101,8 +145,12 @@
         android:layout_height="wrap_content"
         android:text="Edit Profile"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        tools:layout_editor_absoluteX="97dp"
-        tools:layout_editor_absoluteY="44dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
 
     <TextView
         android:id="@+id/allergiesAndLimitsTitle"
@@ -110,16 +158,24 @@
         android:layout_height="wrap_content"
         android:text="Allergies/Limits"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        tools:layout_editor_absoluteX="86dp"
-        tools:layout_editor_absoluteY="292dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.431" />
 
     <ImageButton
         android:id="@+id/backButtonProfilePage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:tint="#5E35B1"
-        app:srcCompat="@drawable/abc_vector_test"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="17dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/abc_vector_test" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
