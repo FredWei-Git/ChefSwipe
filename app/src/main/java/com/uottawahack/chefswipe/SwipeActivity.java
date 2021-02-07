@@ -21,6 +21,7 @@ import com.google.android.material.card.MaterialCardView;
 public class SwipeActivity extends AppCompatActivity implements View.OnClickListener {
     private SwipeViewModel vm;
     private MaterialCardView card;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +38,26 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
         });*/
     }
 
+    private class ViewDragHelperCallback extends ViewDragHelper.Callback {
+        @Override
+        public void onViewCaptured(@NonNull View capturedChild, int activePointerId) {
+            super.onViewCaptured(capturedChild, activePointerId);
+        }
+
+        @Override
+        public void onViewReleased(@NonNull View releasedChild, float xvel, float yvel) {
+            super.onViewReleased(releasedChild, xvel, yvel);
+        }
+
+        @Override
+        public boolean tryCaptureView(@NonNull View child, int pointerId) {
+            return false;
+        }
+    }
+
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
         startActivity(intent);
     }
-
-
-
 }
