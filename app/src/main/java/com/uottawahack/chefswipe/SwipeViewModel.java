@@ -43,10 +43,10 @@ public class SwipeViewModel extends AndroidViewModel {
         String app_id = "3c7db970";
         String app_key = "b9151b2fbebd7585310c64eaf7373789";
         String prefixURL = "https://api.edamam.com/search";
-
+        //Piecing together URL query
         String fullURL = prefixURL + "?q=" + ingredients + "&app_id=" + app_id +
                 "&app_key=" + app_key + "&health=" + health;
-
+        //Creating JsonObject request
         JsonObjectRequest objectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 fullURL,
@@ -58,7 +58,9 @@ public class SwipeViewModel extends AndroidViewModel {
                         // Create RecipeInfo Object
                         JSONArray arr;
                         try {
-                            arr = response.getJSONArray("hits"); // gets the array of recipes in hit json array "[]"
+                            // gets the array of recipes in hit json array "[]"
+                            arr = response.getJSONArray("hits");
+                            //Updating livedata
                             recipeLiveData.setValue(new RecipeInfo(arr, response));
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -72,13 +74,14 @@ public class SwipeViewModel extends AndroidViewModel {
                     }
                 }
         );
+        //Send request to queue
         SwipeRepository.getInstance(context).addToRequestQueue(objectRequest);
     }
 
     String makeIngredientsRequest(){
-        // generating random food form random meal api
+        // generating random food from random meal api
         String URL = "https://www.themealdb.com/api/json/v1/1/random.php";
-        // request queue
+        //Creating JsonObject request
         JsonObjectRequest objectRequest = new JsonObjectRequest(
                 Request.Method.GET,
                 URL,
@@ -108,7 +111,6 @@ public class SwipeViewModel extends AndroidViewModel {
                 }
         );
         SwipeRepository.getInstance(context).addToRequestQueue(objectRequest);
-        Log.e("Random Mealdsadsdasd", randomFood);
         return randomFood;
     }
 }

@@ -42,6 +42,7 @@ import java.util.Map;
 
 
 public class SwipeActivity extends AppCompatActivity implements View.OnClickListener {
+    //Viewmodel instance
     private SwipeViewModel vm;
     private MaterialCardView card;
     // random food variable
@@ -55,21 +56,24 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipe);
+        //Adding button listener
         findViewById(R.id.settingsButton).setOnClickListener(this);
         findViewById(R.id.likeButton).setOnClickListener(this);
         findViewById(R.id.nextButton).setOnClickListener(this);
         findViewById(R.id.infoButton).setOnClickListener(this);
         card = findViewById(R.id.recipeCardView);
+        //Instantiate viewmodel
         vm = new ViewModelProvider(this).get(SwipeViewModel.class);
+        //Obtain Random ingredient *temp*
         randomFood = vm.makeIngredientsRequest();
+        //Obtain recipe for ingredient
         vm.makeSwipeRequest(randomFood, "alcohol-free");
         //Update UI when data is changed
         vm.getRecipe().observe(this, RecipeInfo -> {
-
             updateUI();
         });
     }
-
+    //Updates ui
     private void updateUI() {
         RecipeInfo recipe = vm.getRecipe().getValue();
         TextView recipeName = (TextView) findViewById(R.id.recipeNameView);
@@ -78,7 +82,7 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
 
         recipeName.setText(recipe.getName());
     }
-
+    //Download Recipe Picture from link obtained
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         ImageView bmImage;
 
@@ -103,24 +107,7 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
             bmImage.setImageBitmap(result);
         }
     }
-
-    private class ViewDragHelperCallback extends ViewDragHelper.Callback {
-        @Override
-        public void onViewCaptured(@NonNull View capturedChild, int activePointerId) {
-            super.onViewCaptured(capturedChild, activePointerId);
-        }
-
-        @Override
-        public void onViewReleased(@NonNull View releasedChild, float xvel, float yvel) {
-            super.onViewReleased(releasedChild, xvel, yvel);
-        }
-
-        @Override
-        public boolean tryCaptureView(@NonNull View child, int pointerId) {
-            return false;
-        }
-    }
-
+    //Button click listener
     @Override
     public void onClick(View view) {
         int i = view.getId();
