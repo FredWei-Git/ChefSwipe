@@ -15,10 +15,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 
 public class SwipeViewModel extends AndroidViewModel {
@@ -28,9 +35,14 @@ public class SwipeViewModel extends AndroidViewModel {
     //Mutable data
     private final MutableLiveData<RecipeInfo> recipeLiveData = new MutableLiveData<>();
 
-
+    //Placeholder ingredient
     private String randomFood = "chicken";
     private SavedStateHandle state;
+
+    // firebase
+    FirebaseAuth mAuth = FirebaseAuth.getInstance(); //Grabs current instance of database
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
 
     public SwipeViewModel(Application application) {
         super(application);
@@ -42,7 +54,7 @@ public class SwipeViewModel extends AndroidViewModel {
     }
 
 
-    void makeSwipeRequest(String ingredients, String health) {
+    private void makeSwipeRequest(String ingredients, String health) {
         // API Search Information
         String app_id = "3c7db970";
         String app_key = "b9151b2fbebd7585310c64eaf7373789";
@@ -66,6 +78,23 @@ public class SwipeViewModel extends AndroidViewModel {
                             arr = response.getJSONArray("hits");
                             //Updating livedata
                             recipeLiveData.setValue(new RecipeInfo(arr, response));
+
+                            // adding food to user's food database
+                            if (mFirebaseUser != null) {
+                                String user;
+                                user = mFirebaseUser.getUid(); //Do what you need to do with the id
+                                if (randomFood != null &&
+                                        Objects.requireNonNull(
+                                                recipeLiveData.getValue()).getRecipeURL() != null) {
+                                    Map<String, Object> savedRecipes = new HashMap<>();
+                                    savedRecipes.put("Recipe Name", randomFood);
+                                    savedRecipes.put("Recipe Link", recipeLiveData.getValue()
+                                            .getRecipeURL());
+                                    db.collection("users")
+                                            .document(user).collection("SavedRecipes")
+                                            .document(randomFood).set(savedRecipes);
+                                }
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -82,7 +111,7 @@ public class SwipeViewModel extends AndroidViewModel {
         SwipeRepository.getInstance(context).addToRequestQueue(objectRequest);
     }
 
-    String makeIngredientsRequest(){
+    void makeIngredientsRequest(){
         // generating random food from random meal api
         String URL = "https://www.themealdb.com/api/json/v1/1/random.php";
         //Creating JsonObject request
@@ -98,6 +127,8 @@ public class SwipeViewModel extends AndroidViewModel {
                         try {
                             arr = response.getJSONArray("meals");
                             randomFood = arr.getJSONObject(0).getString("strMeal");
+                            makeSwipeRequest(randomFood, "alcohol-free");
+
                             // Call swipe request for random food.
                             //Log.e("Random Meal", randomFood);
                         } catch (JSONException e) {
@@ -115,6 +146,5 @@ public class SwipeViewModel extends AndroidViewModel {
                 }
         );
         SwipeRepository.getInstance(context).addToRequestQueue(objectRequest);
-        return randomFood;
     }
 }
