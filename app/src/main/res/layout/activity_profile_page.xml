@@ -113,4 +113,13 @@
         tools:layout_editor_absoluteX="86dp"
         tools:layout_editor_absoluteY="292dp" />
 
+    <ImageButton
+        android:id="@+id/backButtonProfilePage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tint="#5E35B1"
+        app:srcCompat="@drawable/abc_vector_test"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="17dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
