@@ -1,52 +1,27 @@
 package com.uottawahack.chefswipe;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.motion.widget.MotionLayout;
-import androidx.core.view.MotionEventCompat;
-import androidx.customview.widget.ViewDragHelper;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.google.android.material.card.MaterialCardView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class SwipeActivity extends AppCompatActivity implements View.OnClickListener {
     //Viewmodel instance
     private SwipeViewModel vm;
-    private MaterialCardView card;
-
+    private MaterialCardViewTouchListener card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +32,47 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.likeButton).setOnClickListener(this);
         findViewById(R.id.nextButton).setOnClickListener(this);
         findViewById(R.id.infoButton).setOnClickListener(this);
+
+        //Finds SwipeCardView
         card = findViewById(R.id.recipeCardView);
+        //Adds TouchListener to Card to respond to user swipes
+        card.setOnTouchListener(new View.OnTouchListener() {
+            private float previousX;
+            private float previousY;
+            @Override
+            public boolean onTouch(View view, MotionEvent e) {
+                view.onTouchEvent(e);
+                view.performClick();
+                if (e.getAction() == MotionEvent.ACTION_DOWN){
+                    previousX = e.getX();
+                    previousY = e.getY();
+                }
+                if (e.getAction() == MotionEvent.ACTION_UP) {
+                    float x = e.getX();
+                    float y = e.getY();
+                    float dx = x - previousX;
+                    float dy = y - previousY;
+                    if (dy < -650){
+                        Log.e("Info", "dy:" + dy);
+                    } else if (dx > 100) {
+                        //Animates card and refreshes recipe on swipe
+                        ((MotionLayout) card.getParent()).transitionToEnd();
+                        vm.makeIngredientsRequest(true);
+                        Log.e("Liked", "dx:" + dx);
+                    } else if (dx < -100){
+                        vm.makeIngredientsRequest(false);
+                        Log.e("Passed", "dx:" + dx);
+                    }
+
+                }
+
+                return true;
+            }
+        });
         //Instantiate viewmodel
         vm = new ViewModelProvider(this).get(SwipeViewModel.class);
         //Obtain Random ingredient *temp* and calls for recipe using ingredient
-        vm.makeIngredientsRequest();
+        vm.makeIngredientsRequest(false);
         //Update UI when SwipeViewModel.recipeLiveData is changed
         vm.getRecipe().observe(this, RecipeInfo -> {
             updateUI();
@@ -92,15 +103,63 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
             Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(intent);
         } else if (i == R.id.likeButton) {
-
             // Changes the food image
             ((MotionLayout) view.getParent()).transitionToEnd();
-            vm.makeIngredientsRequest();
+            vm.makeIngredientsRequest(true);
         } else if (i == R.id.nextButton) {
-            vm.makeIngredientsRequest();
+            vm.makeIngredientsRequest(false);
         } else if (i == R.id.infoButton) {
             Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
             startActivity(intent);
         }
     }
+    public static class MaterialCardViewTouchListener extends MaterialCardView {
+
+
+        public MaterialCardViewTouchListener(Context context) {
+            super(context);
+        }
+
+        public MaterialCardViewTouchListener(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
+
+        public MaterialCardViewTouchListener(Context context, AttributeSet attrs, int defStyleAttr) {
+            super(context, attrs, defStyleAttr);
+        }
+
+
+        @Override
+        public boolean onInterceptTouchEvent(MotionEvent e) {
+            /*
+             * This method JUST determines whether we want to intercept the motion.
+             * If we return true, onTouchEvent will be called and we do the actual
+             * scrolling there.
+             */
+            final int action = e.getAction();
+            return action == MotionEvent.ACTION_MOVE;
+        }
+
+        @Override
+        protected void onLayout(boolean changed, int l, int t, int r, int b) {
+            super.onLayout(changed, l, t, r, b);
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent e) {
+            // Here we actually handle the touch event (e.g. if the action is ACTION_MOVE,
+            // scroll this container).
+            // This method will only be called if the touch event was intercepted in
+            // onInterceptTouchEvent
+            super.onTouchEvent(e);
+            return true;
+        }
+        @Override
+        public boolean performClick() {
+            // do what you want
+            super.performClick();
+            return true;
+        }
+    }
+
 }
