@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class RecipeInfo {
     // Variables
     private String name = "", recipeURL, image;
-    private ArrayList<String> ingredients = new ArrayList<>();
-    private ArrayList<String> healthLabels = new ArrayList<>();
+    private final ArrayList<String> ingredients = new ArrayList<>();
+    private final ArrayList<String> healthLabels = new ArrayList<>();
 
     // Temp variables
     JSONArray tempArray;
