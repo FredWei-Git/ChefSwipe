@@ -57,7 +57,7 @@ public class SwipeViewModel extends AndroidViewModel {
     private void makeSwipeRequest(boolean liked, String ingredients, String health) {
         // API Search Information
         String app_id = "3c7db970";
-        String app_key = "b9151b2fbebd7585310c64eaf7373789";
+        String app_key = "@secrets/recipeKey";
         String prefixURL = "https://api.edamam.com/search";
         //Piecing together URL query
         String fullURL = prefixURL + "?q=" + ingredients + "&app_id=" + app_id +
@@ -67,51 +67,43 @@ public class SwipeViewModel extends AndroidViewModel {
                 Request.Method.GET,
                 fullURL,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.e("Rest Response", response.toString());
-                        // Create RecipeInfo Object
-                        JSONArray arr;
-                        try {
-                            // gets the array of recipes in hits json array "[]"
-                            arr = response.getJSONArray("hits");
-                            //Updating livedata
-                            recipeLiveData.setValue(new RecipeInfo(arr, response));
-                            //Adds recipe to user's database only if theyliked it
-                            if (liked){
-                                if (mFirebaseUser != null) {
-                                    String user;
-                                    user = mFirebaseUser.getUid();
-                                    if (randomFood != null &&
-                                            Objects.requireNonNull(
-                                                    recipeLiveData.getValue())
-                                                    .getRecipeURL() != null) {
-                                        Map<String, Object> savedRecipes = new HashMap<>();
-                                        savedRecipes.put("Recipe Name", randomFood);
-                                        savedRecipes.put(
-                                                "Recipe Link",
-                                                recipeLiveData.getValue()
-                                                .getRecipeURL());
-                                        db.collection("users")
-                                                .document(user)
-                                                .collection("SavedRecipes")
-                                                .document(randomFood)
-                                                .set(savedRecipes);
-                                    }
+                response -> {
+                    Log.e("Rest Response", response.toString());
+                    // Create RecipeInfo Object
+                    JSONArray arr;
+                    try {
+                        // gets the array of recipes in hits json array "[]"
+                        arr = response.getJSONArray("hits");
+                        //Updating livedata
+                        recipeLiveData.setValue(new RecipeInfo(arr, response));
+                        //Adds recipe to user's database only if theyliked it
+                        if (liked){
+                            if (mFirebaseUser != null) {
+                                String user;
+                                user = mFirebaseUser.getUid();
+                                if (randomFood != null &&
+                                        Objects.requireNonNull(
+                                                recipeLiveData.getValue())
+                                                .getRecipeURL() != null) {
+                                    Map<String, Object> savedRecipes = new HashMap<>();
+                                    savedRecipes.put("Recipe Name", randomFood);
+                                    savedRecipes.put(
+                                            "Recipe Link",
+                                            recipeLiveData.getValue()
+                                            .getRecipeURL());
+                                    db.collection("users")
+                                            .document(user)
+                                            .collection("SavedRecipes")
+                                            .document(randomFood)
+                                            .set(savedRecipes);
                                 }
                             }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("Rest Response", error.toString());
-                    }
-                }
+                error -> Log.e("Rest Response", error.toString())
         );
         //Send request to queue
         SwipeRepository.getInstance(context).addToRequestQueue(objectRequest);
@@ -125,31 +117,22 @@ public class SwipeViewModel extends AndroidViewModel {
                 Request.Method.GET,
                 URL,
                 null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // generating random meal name from API
-                        JSONArray arr = null;
-                        try {
-                            arr = response.getJSONArray("meals");
-                            randomFood = arr.getJSONObject(0).getString("strMeal");
-                            makeSwipeRequest(liked, randomFood, "alcohol-free");
+                response -> {
+                    // generating random meal name from API
+                    JSONArray arr;
+                    try {
+                        arr = response.getJSONArray("meals");
+                        randomFood = arr.getJSONObject(0).getString("strMeal");
+                        makeSwipeRequest(liked, randomFood, "alcohol-free");
 
-                            // Call swipe request for random food.
-                            //Log.e("Random Meal", randomFood);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        Log.e("Random Meal", randomFood);
+                        // Call swipe request for random food.
+                        //Log.e("Random Meal", randomFood);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
+                    Log.e("Random Meal", randomFood);
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("Rest Response", error.toString());
-
-                    }
-                }
+                error -> Log.e("Rest Response", error.toString())
         );
         SwipeRepository.getInstance(context).addToRequestQueue(objectRequest);
     }
