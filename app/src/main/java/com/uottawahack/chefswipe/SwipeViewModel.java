@@ -56,9 +56,9 @@ public class SwipeViewModel extends AndroidViewModel {
 
     private void makeSwipeRequest(boolean liked, String ingredients, String health) {
         // API Search Information
-        String app_id = "3c7db970";
-        String app_key = "@secrets/recipeKey";
-        String prefixURL = "https://api.edamam.com/search";
+        String app_id = context.getString(R.string.api_id);
+        String app_key = context.getString(R.string.recipeKey);
+        String prefixURL = context.getString(R.string.api_prefix);
         //Piecing together URL query
         String fullURL = prefixURL + "?q=" + ingredients + "&app_id=" + app_id +
                 "&app_key=" + app_key + "&health=" + health;

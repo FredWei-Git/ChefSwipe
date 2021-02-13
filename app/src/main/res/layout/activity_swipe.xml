@@ -39,7 +39,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:srcCompat="@tools:sample/avatars"
+                android:contentDescription="@string/recipePicture" />
 
             <TextView
                 android:id="@+id/recipeNameView"
@@ -47,7 +48,7 @@
                 android:layout_height="0dp"
 
                 android:fontFamily="sans-serif-thin"
-                android:text="No Results"
+                android:text="@string/limitText"
                 android:textColor="@color/black"
                 android:textFontWeight="40"
                 android:textSize="38sp"
@@ -73,7 +74,8 @@
         app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_fork_plate_knife_svgrepo_com" />
+        app:srcCompat="@drawable/ic_fork_plate_knife_svgrepo_com"
+        android:contentDescription="@string/logo" />
 
     <Button
         android:id="@+id/settingsButton"
@@ -82,7 +84,6 @@
         android:layout_height="54dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
         app:icon="@drawable/ic_baseline_settings_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

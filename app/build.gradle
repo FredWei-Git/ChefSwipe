@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.chefswipe"
-        minSdkVersion 16
+        minSdkVersion 28
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -45,7 +45,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-service:2.2.0'
 
 
-    implementation 'androidx.fragment:fragment:1.2.2'
+    implementation 'androidx.fragment:fragment:1.2.5'
     annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0'
 
     implementation platform('com.google.firebase:firebase-bom:26.4.0')
@@ -55,9 +55,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
-    implementation 'com.google.firebase:firebase-auth:19.2.0'
-    implementation 'com.google.firebase:firebase-firestore:21.4.0'
-    testImplementation 'junit:junit:4.+'
+    implementation 'com.google.firebase:firebase-auth:20.0.2'
+    implementation 'com.google.firebase:firebase-firestore:22.1.0'
+    testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     // Volley

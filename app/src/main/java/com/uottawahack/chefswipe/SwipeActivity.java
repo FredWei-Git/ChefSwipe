@@ -74,15 +74,13 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
         //Obtain Random ingredient *temp* and calls for recipe using ingredient
         vm.makeIngredientsRequest(false);
         //Update UI when SwipeViewModel.recipeLiveData is changed
-        vm.getRecipe().observe(this, RecipeInfo -> {
-            updateUI();
-        });
+        vm.getRecipe().observe(this, RecipeInfo -> updateUI());
     }
     //Updates ui
     private void updateUI() {
         RecipeInfo recipe = vm.getRecipe().getValue();
-        TextView recipeName = (TextView) findViewById(R.id.recipeNameView);
-        ImageView imageView = (ImageView) findViewById(R.id.recipeImageView);
+        TextView recipeName = findViewById(R.id.recipeNameView);
+        ImageView imageView = findViewById(R.id.recipeImageView);
         if (recipe != null) {
             Picasso.get().load(recipe.getImage()).into(imageView);
         }
@@ -90,7 +88,7 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
             if (!recipe.getName().equals("")){
                 recipeName.setText(recipe.getName());
             }else {
-                recipeName.setText("recipe limit exhausted refresh in a minute");
+                recipeName.setText(getString(R.string.limitText));
             }
         }
     }
@@ -152,6 +150,7 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
             // This method will only be called if the touch event was intercepted in
             // onInterceptTouchEvent
             super.onTouchEvent(e);
+            performClick();
             return true;
         }
         @Override
