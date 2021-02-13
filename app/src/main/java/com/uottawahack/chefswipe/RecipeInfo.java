@@ -17,11 +17,6 @@ public class RecipeInfo {
     // Temp variables
     JSONArray tempArray;
 
-    // Constructors
-    private RecipeInfo() {
-
-    }
-
 
     public RecipeInfo(JSONArray arr, JSONObject response) {
         try {

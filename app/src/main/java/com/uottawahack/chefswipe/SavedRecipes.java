@@ -28,8 +28,8 @@ import java.util.List;
 public class SavedRecipes extends AppCompatActivity {
     // Variables
     ListView recipesView;
-    private List<String> recipeList = new ArrayList<>();
-    private ArrayList<String> recipeLinks = new ArrayList<>();
+    private final List<String> recipeList = new ArrayList<>();
+    private final ArrayList<String> recipeLinks = new ArrayList<>();
     // Firebase
     // firebase
     FirebaseAuth mAuth = FirebaseAuth.getInstance(); //Grabs current instance of database
@@ -45,20 +45,25 @@ public class SavedRecipes extends AppCompatActivity {
         // Retrieving data from firestore onto the listview
         String user;
         user = mFirebaseUser.getUid(); //Do what you need to do with the id
-        CollectionReference recipeDB = db.collection("users").document(user).collection("SavedRecipes");
+        CollectionReference recipeDB = db.collection("users")
+                .document(user)
+                .collection("SavedRecipes");
         recipeDB.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+            public void onEvent(@Nullable QuerySnapshot value,
+                                @Nullable FirebaseFirestoreException error) {
                 // clear the lists before you refill them
                 recipeList.clear();
                 recipeLinks.clear();
                 // Loops through th data from firebase
                 for (DocumentSnapshot snapshot : value) {
-                    String item = snapshot.getString("Recipe Name") + "\n" + snapshot.getString("Recipe Link");
+                    String item = snapshot.getString("Recipe Name")
+                            + "\n" + snapshot.getString("Recipe Link");
                     recipeList.add(item);
                     recipeLinks.add(snapshot.getString("Recipe Link"));
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_selectable_list_item, recipeList);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(),
+                        android.R.layout.simple_selectable_list_item, recipeList);
                 adapter.notifyDataSetChanged();
                 recipesView.setAdapter(adapter);
             }

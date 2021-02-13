@@ -23,10 +23,7 @@ import java.util.concurrent.Executor;
 public class SwipeRepository {
     private static SwipeRepository instance;
     public RequestQueue requestQueue;
-    private static Context ctx;
-
-
-
+    private final Context ctx;
 
     private SwipeRepository(Context context) {
         ctx = context;
@@ -40,8 +37,6 @@ public class SwipeRepository {
     }
     public RequestQueue getRequestQueue() {
         if (requestQueue == null) {
-            // getApplicationContext() is key, it keeps you from leaking the
-            // Activity or BroadcastReceiver if someone passes one in.
             requestQueue = Volley.newRequestQueue(ctx.getApplicationContext());
         }
         return requestQueue;
