@@ -8,11 +8,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class RecipeInfo<T> {
+public class RecipeInfo {
     // Variables
     private String name = "", recipeURL, image;
-    private ArrayList<String> ingredients = new ArrayList<String>();
-    private ArrayList<String> healthLabels = new ArrayList<String>();
+    private ArrayList<String> ingredients = new ArrayList<>();
+    private ArrayList<String> healthLabels = new ArrayList<>();
 
     // Temp variables
     JSONArray tempArray;
@@ -76,21 +76,4 @@ public class RecipeInfo<T> {
         return healthLabels;
     }
 
-
-    // Success or Error
-    public static final class Success<T> extends RecipeInfo<T> {
-        public T data;
-
-        public Success(T data) {
-            this.data = data;
-        }
-    }
-
-    public static final class Error<T> extends RecipeInfo<T> {
-        public Exception exception;
-
-        public Error(Exception exception) {
-            this.exception = exception;
-        }
-    }
 }
