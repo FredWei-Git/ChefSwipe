@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/signInActivity">
+
+    <activity
+        android:id="@+id/signInActivity"
+        android:name="com.uottawahack.chefswipe.SignInActivity"
+        android:label="activity_signin"
+        tools:layout="@layout/activity_signin" >
+        <action
+            android:id="@+id/action_signInActivity_to_swipeActivity"
+            app:destination="@id/swipeActivity"
+            app:enterAnim="@anim/fragment_fast_out_extra_slow_in"
+            app:exitAnim="@anim/fragment_fade_exit" />
+    </activity>
+    <activity
+        android:id="@+id/swipeActivity"
+        android:name="com.uottawahack.chefswipe.SwipeActivity"
+        android:label="SwipeActivity" >
+        <action
+            android:id="@+id/action_swipeActivity_to_savedRecipes"
+            app:destination="@id/savedRecipes"
+            app:enterAnim="@anim/fragment_fade_enter" />
+        <action
+            android:id="@+id/action_swipeActivity_to_settingsActivity"
+            app:destination="@id/settingsActivity" />
+    </activity>
+    <activity
+        android:id="@+id/savedRecipes"
+        android:name="com.uottawahack.chefswipe.SavedRecipes"
+        android:label="activity_saved_recipes"
+        tools:layout="@layout/activity_saved_recipes" />
+    <activity
+        android:id="@+id/settingsActivity"
+        android:name="com.uottawahack.chefswipe.SettingsActivity"
+        android:label="activity_settings_page"
+        tools:layout="@layout/activity_settings_page" />
+</navigation>

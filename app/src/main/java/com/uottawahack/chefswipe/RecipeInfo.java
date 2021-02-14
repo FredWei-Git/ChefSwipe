@@ -23,18 +23,21 @@ public class RecipeInfo {
             // generating random number from first 10 results
             /*int lower = 0;
             int upper = 1;
-            int r = (int) (Math.random() * (upper - lower)) + lower; //  lower (inclusive) and upper (exclusive)
+            int r = (int) (Math.random() * (upper - lower)) + lower;
+            //  lower (inclusive) and upper (exclusive)
              */
             int r = 0;
             // setting the name, recipeURL, ingredients, and healthLabels
             this.name = arr.getJSONObject(r).getJSONObject("recipe").getString("label");
             this.recipeURL = arr.getJSONObject(r).getJSONObject("recipe").getString("url");
             this.image = arr.getJSONObject(r).getJSONObject("recipe").getString("image");
-            tempArray = arr.getJSONObject(r).getJSONObject("recipe").getJSONArray("ingredientLines");
+            tempArray = arr.getJSONObject(r).getJSONObject("recipe")
+                    .getJSONArray("ingredientLines");
             for (int i = 0; i < tempArray.length(); i++) {
                 this.ingredients.add((String) tempArray.get(i));
             }
-            tempArray = arr.getJSONObject(r).getJSONObject("recipe").getJSONArray("healthLabels");
+            tempArray = arr.getJSONObject(r).getJSONObject("recipe")
+                    .getJSONArray("healthLabels");
             for (int i = 0; i < tempArray.length(); i++) {
                 this.healthLabels.add((String) tempArray.get(i));
             }

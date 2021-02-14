@@ -1,5 +1,6 @@
 package com.uottawahack.chefswipe;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
@@ -30,6 +31,7 @@ import java.util.Objects;
 
 public class SwipeViewModel extends AndroidViewModel {
     //Obtain context to query
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
 
     //Mutable data

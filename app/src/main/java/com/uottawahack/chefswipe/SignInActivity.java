@@ -99,7 +99,11 @@ public class SignInActivity extends AppCompatActivity implements
                                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                                 Map<String, Object> email = new HashMap<>();
                                 email.put("Email", mAuth.getCurrentUser().getEmail());
-                                db.collection("users").document(user).collection("Accounts").document("AccountDetails").set(email);
+                                db.collection("users")
+                                        .document(user)
+                                        .collection("Accounts")
+                                        .document("AccountDetails")
+                                        .set(email);
                             }
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");

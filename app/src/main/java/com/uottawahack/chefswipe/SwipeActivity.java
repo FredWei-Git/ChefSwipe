@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.MotionLayout;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.squareup.picasso.Picasso;
@@ -25,7 +26,7 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipe);
         //Adding button listener
-        findViewById(R.id.settingsButton).setOnClickListener(this);
+        findViewById(R.id.navigationButton).setOnClickListener(this);
         findViewById(R.id.likeButton).setOnClickListener(this);
         findViewById(R.id.nextButton).setOnClickListener(this);
         findViewById(R.id.infoButton).setOnClickListener(this);
@@ -40,10 +41,12 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
             public boolean onTouch(View view, MotionEvent e) {
                 view.onTouchEvent(e);
                 view.performClick();
+                //Gets x and y at the start of touch
                 if (e.getAction() == MotionEvent.ACTION_DOWN){
                     previousX = e.getX();
                     previousY = e.getY();
                 }
+                //Calculates change in x and y upon lifting touch
                 if (e.getAction() == MotionEvent.ACTION_UP) {
                     float x = e.getX();
                     float y = e.getY();
@@ -94,13 +97,16 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         int i = view.getId();
-        if (i == R.id.settingsButton) {
-            Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
-            startActivity(intent);
+        if (i == R.id.navigationButton) {
+            DrawerLayout dView = findViewById(R.id.drawer_layout);
+            if (!dView.isDrawerOpen(findViewById(R.id.nvView))){
+                dView.open();
+            }
         } else if (i == R.id.likeButton) {
             // Changes the food image
             ((MotionLayout) view.getParent()).transitionToEnd();
             vm.makeIngredientsRequest(true);
+            ((MotionLayout) view.getParent()).setProgress(0);
         } else if (i == R.id.nextButton) {
             vm.makeIngredientsRequest(false);
         } else if (i == R.id.infoButton) {
@@ -108,4 +114,5 @@ public class SwipeActivity extends AppCompatActivity implements View.OnClickList
             startActivity(intent);
         }
     }
+
 }

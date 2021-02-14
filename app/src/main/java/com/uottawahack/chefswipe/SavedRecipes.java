@@ -41,7 +41,7 @@ public class SavedRecipes extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_recipes);
         // setting listview
-        recipesView = (ListView) findViewById(R.id.savedRecipesListView);
+        recipesView = findViewById(R.id.savedRecipesListView);
         // Retrieving data from firestore onto the listview
         String user;
         user = mFirebaseUser.getUid(); //Do what you need to do with the id
@@ -57,8 +57,7 @@ public class SavedRecipes extends AppCompatActivity {
                 recipeLinks.clear();
                 // Loops through th data from firebase
                 for (DocumentSnapshot snapshot : value) {
-                    String item = snapshot.getString("Recipe Name")
-                            + "\n" + snapshot.getString("Recipe Link");
+                    String item = snapshot.getString("Recipe Name");
                     recipeList.add(item);
                     recipeLinks.add(snapshot.getString("Recipe Link"));
                 }

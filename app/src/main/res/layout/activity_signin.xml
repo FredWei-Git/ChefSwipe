@@ -19,7 +19,6 @@
         android:id="@+id/textView2"
         android:layout_width="153dp"
         android:layout_height="52dp"
-        android:autoText="false"
         android:fontFamily="sans-serif-thin"
         android:text="Welcome"
         android:textColor="#673AB7"
@@ -28,5 +27,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
