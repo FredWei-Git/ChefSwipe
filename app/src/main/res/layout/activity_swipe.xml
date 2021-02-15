@@ -51,6 +51,17 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/drawer_view" />
+        app:menu="@menu/drawer_view"
+        app:headerLayout="@layout/nav_drawer_header">
+        <Button
+            android:id="@+id/logOutButton"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            app:icon="@drawable/ic_round_logout_24"
+            android:layout_width="40dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_gravity="bottom|end" />
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

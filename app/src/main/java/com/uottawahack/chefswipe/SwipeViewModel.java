@@ -56,11 +56,15 @@ public class SwipeViewModel extends AndroidViewModel {
         context = application.getApplicationContext();
     }
 
+
+    //Observable Live Data
     public LiveData<RecipeInfo> getRecipe() {
         return recipeLiveData;
     }
     public LiveData<List<String>> getRecipeList() { return recipeList; }
     public LiveData<ArrayList<String>> getRecipeLinks() { return recipeLinks; }
+
+    public FirebaseAuth getAuth() { return mAuth; }
 
     private void makeSwipeRequest(boolean liked, String ingredients, String health) {
         // API Search Information

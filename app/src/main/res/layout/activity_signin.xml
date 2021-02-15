@@ -20,7 +20,7 @@
         android:layout_width="153dp"
         android:layout_height="52dp"
         android:fontFamily="sans-serif-thin"
-        android:text="Welcome"
+        android:text="@string/welcome"
         android:textColor="#673AB7"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/signInButton"

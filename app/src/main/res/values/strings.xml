@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">ChefSwipe</string>
+    <!-- Strings used for SignInScreen-->
+    <string name="welcome">Welcome</string>
     <!-- Strings used for navigation -->
+    <string name="headerName">Hello!</string>
     <string name="navDrawerHome">Home</string>
     <string name="navDrawerRecipe">Saved Recipes</string>
     <string name="navDrawerConfig">Configurations</string>

@@ -1,18 +1,22 @@
 package com.uottawahack.chefswipe;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class SwipeActivity extends AppCompatActivity {
-
     //Viewmodel instance
     public SwipeActivity(){
         super(R.layout.activity_swipe);
@@ -20,7 +24,10 @@ public class SwipeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        findViewById(R.id.logOutButton).setOnClickListener(navClickListener);
         findViewById(R.id.navigationButton).setOnClickListener(navClickListener);
+
         NavigationView navView = findViewById(R.id.nvView);
         navView.setNavigationItemSelectedListener( item ->{
             NavController navController = Navigation.findNavController(this, R.id.fragment);
@@ -49,6 +56,10 @@ public class SwipeActivity extends AppCompatActivity {
             if (!dView.isDrawerOpen(findViewById(R.id.nvView))){
                 dView.open();
             }
+        }else if (i == R.id.logOutButton){
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(getApplicationContext(), SignInActivity.class);
+            startActivity(intent);
         }
     };
 }

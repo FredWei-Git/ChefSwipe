@@ -1,22 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/navigation_drawer">
-
     <group
-        android:id="@+id/group1"
-        android:checkableBehavior="single">
+        android:id="@+id/group1">
         <item
             android:id="@+id/homeItem"
-            android:icon="@drawable/ic_round_home_24"
-            android:title="@string/navDrawerHome"
-            android:checked="true" />
+            android:title="@string/navDrawerHome" />
         <item
             android:id="@+id/savedRecipeItem"
-            android:icon="@drawable/ic_round_format_list_bulleted_24"
             android:title="@string/navDrawerRecipe" />
         <item
             android:id="@+id/configurationItem"
-            android:icon="@drawable/ic_round_settings_24"
             android:title="@string/navDrawerConfig" />
     </group>
 </menu>

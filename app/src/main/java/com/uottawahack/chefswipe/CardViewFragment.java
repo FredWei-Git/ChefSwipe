@@ -73,7 +73,6 @@ public class CardViewFragment extends Fragment implements View.OnClickListener, 
             // Changes the food image
             ((MotionLayout) view.getParent()).transitionToEnd();
             vm.makeIngredientsRequest(true);
-            ((MotionLayout) view.getParent()).setProgress(0);
         } else if (i == R.id.nextButton) {
             vm.makeIngredientsRequest(false);
         } else if (i == R.id.infoButton) {
