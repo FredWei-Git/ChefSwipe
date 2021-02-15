@@ -2,7 +2,6 @@ package com.uottawahack.chefswipe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,28 +36,24 @@ public class AddRecipeActivity extends AppCompatActivity {
         // Buttons
         back = (Button) findViewById(R.id.addRecipeBack);
         submitRecipe = (Button) findViewById(R.id.addRecipeSubmit);
-        back.setOnClickListener(new View.OnClickListener() {
-            // goes back to home page
-            public void onClick(View view) {
-                //
-                finish();
-            }
+        // goes back to home page
+        back.setOnClickListener(view -> {
+            //
+            finish();
         });
-        submitRecipe.setOnClickListener(new View.OnClickListener() {
-            // Adds recipe to firebase
-            public void onClick(View view) {
-                //
-                FirebaseUser mFirebaseUser = mAuth.getCurrentUser(); //Do what you need to do with the id
-                String user = mFirebaseUser.getUid(); //Do what you need to do with the id
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                Map<String, Object> recipe = new HashMap<>();
-                recipe.put("Recipe Name", name.getText().toString().trim());
-                // save recipe to user
-                DocumentReference userDB = db.collection("users").document(user).collection("Accounts").document("AccountDetails");
-                userDB.collection("Recipes").document(name.getText().toString().trim()).set(recipe);
-                // save recipe to main database
-                DocumentReference recipeDB = db.collection("Recipe").document(user).collection("Accounts").document("AccountDetails");
-            }
+        // Adds recipe to firebase
+        submitRecipe.setOnClickListener(view -> {
+            //
+            FirebaseUser mFirebaseUser = mAuth.getCurrentUser(); //Do what you need to do with the id
+            String user = mFirebaseUser.getUid(); //Do what you need to do with the id
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            Map<String, Object> recipe = new HashMap<>();
+            recipe.put("Recipe Name", name.getText().toString().trim());
+            // save recipe to user
+            DocumentReference userDB = db.collection("users").document(user).collection("Accounts").document("AccountDetails");
+            userDB.collection("Recipes").document(name.getText().toString().trim()).set(recipe);
+            // save recipe to main database
+            DocumentReference recipeDB = db.collection("Recipe").document(user).collection("Accounts").document("AccountDetails");
         });
 
     }

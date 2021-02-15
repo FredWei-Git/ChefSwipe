@@ -1,8 +1,12 @@
 <resources>
     <string name="app_name">ChefSwipe</string>
-    <string name="title_activity_settings">SettingsActivity</string>
-    <!-- Strings used for fragments for navigation -->
+    <!-- Strings used for navigation -->
+    <string name="navDrawerHome">Home</string>
+    <string name="navDrawerRecipe">Saved Recipes</string>
+    <string name="navDrawerConfig">Configurations</string>
+    <!-- Strings used in Swipe Activity -->
     <string name="recipePicture">Picture of the recipe</string>
     <string name="logo">knife fork and plate logo</string>
+    <!-- Strings used in CardView Fragment-->
     <string name="limitText">Recipe limit exhausted refresh in a minute.</string>
 </resources>

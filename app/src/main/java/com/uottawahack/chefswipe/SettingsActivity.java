@@ -5,17 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ListView;
-import android.widget.RadioButton;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -32,14 +23,6 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings_page);
         // balanced, high protein, low-fat, low-carb, vegan, vegetarian, sugar-conscious, peanut-free, tree-nut-free, alcohol-free
         // go to saved recipe page
-        savedRecipes = (Button) findViewById(R.id.savedRecipesButton);
-        savedRecipes.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                //
-                Intent intent = new Intent(getApplicationContext(), SavedRecipes.class);
-                startActivity(intent);
-            }
-        });
     }
 
 
@@ -49,64 +32,34 @@ public class SettingsActivity extends AppCompatActivity {
         // check which button got checked
         switch (view.getId()) {
             case R.id.balancedSwitch:
-                if (checked)
-                    balanced = true;
-                else
-                    balanced = false;
+                balanced = checked;
                 break;
             case R.id.highProteinSwitch:
-                if (checked)
-                    highProtein = true;
-                else
-                    highProtein = false;
+                highProtein = checked;
                 break;
             case R.id.lowFatSwitch:
-                if (checked)
-                    lowFat = true;
-                else
-                    lowFat = false;
+                lowFat = checked;
                 break;
             case R.id.lowCarbSwitch:
-                if (checked)
-                    lowCarb = true;
-                else
-                    lowCarb = false;
+                lowCarb = checked;
                 break;
             case R.id.veganSwitch:
-                if (checked)
-                    vegan = true;
-                else
-                    vegan = false;
+                vegan = checked;
                 break;
             case R.id.vegetarianSwitch:
-                if (checked)
-                    vegetarian = true;
-                else
-                    vegetarian = false;
+                vegetarian = checked;
                 break;
             case R.id.sugarConsciousSwitch:
-                if (checked)
-                    sugarConscious = true;
-                else
-                    sugarConscious = false;
+                sugarConscious = checked;
                 break;
             case R.id.peanutFreeSwitch:
-                if (checked)
-                    peanutFree = true;
-                else
-                    peanutFree = false;
+                peanutFree = checked;
                 break;
             case R.id.treeNutFreeSwitch:
-                if (checked)
-                    treeNutFree = true;
-                else
-                    treeNutFree = false;
+                treeNutFree = checked;
                 break;
             case R.id.alcoholFreeSwitch:
-                if (checked)
-                    alcoholFree = true;
-                else
-                    alcoholFree = false;
+                alcoholFree = checked;
                 break;
         }
     }

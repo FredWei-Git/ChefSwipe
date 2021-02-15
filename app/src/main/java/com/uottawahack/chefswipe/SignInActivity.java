@@ -73,7 +73,7 @@ public class SignInActivity extends AppCompatActivity implements
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
                 firebaseAuthWithGoogle(account.getIdToken());
-            } catch (ApiException e) {
+            } catch (ApiException | NullPointerException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
                 // [START_EXCLUDE]
@@ -88,31 +88,28 @@ public class SignInActivity extends AppCompatActivity implements
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
-                            if (mFirebaseUser != null) {
-                                String user;
-                                user = mFirebaseUser.getUid(); //Do what you need to do with the id
-                                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                                Map<String, Object> email = new HashMap<>();
-                                email.put("Email", mAuth.getCurrentUser().getEmail());
-                                db.collection("users")
-                                        .document(user)
-                                        .collection("Accounts")
-                                        .document("AccountDetails")
-                                        .set(email);
-                            }
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user
-                            updateUI(null);
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
+                        if (mFirebaseUser != null) {
+                            String user;
+                            user = mFirebaseUser.getUid(); //Do what you need to do with the id
+                            FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            Map<String, Object> email = new HashMap<>();
+                            email.put("Email", mAuth.getCurrentUser().getEmail());
+                            db.collection("users")
+                                    .document(user)
+                                    .collection("Accounts")
+                                    .document("AccountDetails")
+                                    .set(email);
                         }
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d(TAG, "signInWithCredential:success");
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        updateUI(user);
+                    } else {
+                        // If sign in fails, display a message to the user
+                        updateUI(null);
                     }
                 });
     }
@@ -140,10 +137,6 @@ public class SignInActivity extends AppCompatActivity implements
         int i = v.getId();
         if (i == R.id.signInButton) {
             signIn();
-        } /*else if (i == R.id.signOutButton) {
-            signOut();
-        } else if (i == R.id.disconnectButton) {
-            revokeAccess();
-        }*/
+        }
     }
 }

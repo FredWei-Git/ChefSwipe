@@ -5,26 +5,29 @@ import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.SavedStateHandle;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -37,14 +40,16 @@ public class SwipeViewModel extends AndroidViewModel {
     //Mutable data
     private final MutableLiveData<RecipeInfo> recipeLiveData = new MutableLiveData<>();
 
+    private final MutableLiveData<List<String>> recipeList = new MutableLiveData<>();
+    private final MutableLiveData<ArrayList<String>> recipeLinks = new MutableLiveData<>();
     //Placeholder ingredient
     private String randomFood = "chicken";
     private SavedStateHandle state;
 
     // firebase
-    FirebaseAuth mAuth = FirebaseAuth.getInstance(); //Grabs current instance of database
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
+    final FirebaseAuth mAuth = FirebaseAuth.getInstance(); //Grabs current instance of database
+    final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    final FirebaseUser mFirebaseUser = mAuth.getCurrentUser();
 
     public SwipeViewModel(Application application) {
         super(application);
@@ -54,7 +59,8 @@ public class SwipeViewModel extends AndroidViewModel {
     public LiveData<RecipeInfo> getRecipe() {
         return recipeLiveData;
     }
-
+    public LiveData<List<String>> getRecipeList() { return recipeList; }
+    public LiveData<ArrayList<String>> getRecipeLinks() { return recipeLinks; }
 
     private void makeSwipeRequest(boolean liked, String ingredients, String health) {
         // API Search Information
@@ -137,5 +143,26 @@ public class SwipeViewModel extends AndroidViewModel {
                 error -> Log.e("Rest Response", error.toString())
         );
         SwipeRepository.getInstance(context).addToRequestQueue(objectRequest);
+    }
+    void makeRecipeListRequest(){
+        String user;
+        user = mFirebaseUser.getUid(); //Do what you need to do with the id
+        CollectionReference recipeDB = db.collection("users")
+                .document(user)
+                .collection("SavedRecipes");
+        recipeDB.addSnapshotListener((value, error) -> {
+            recipeLinks.setValue(new ArrayList<>());
+            recipeList.setValue(new ArrayList<>());
+            // clear the lists before you refill them
+            recipeList.getValue().clear();
+            recipeLinks.getValue().clear();
+            // Loops through th data from firebase
+            for (DocumentSnapshot snapshot : value) {
+                String item = snapshot.getString("Recipe Name");
+                recipeList.getValue().add(item);
+                recipeLinks.getValue().add(snapshot.getString("Recipe Link"));
+            }
+
+        });
     }
 }

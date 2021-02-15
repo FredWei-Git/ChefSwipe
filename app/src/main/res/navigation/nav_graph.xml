@@ -3,39 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/signInActivity">
-
-    <activity
-        android:id="@+id/signInActivity"
-        android:name="com.uottawahack.chefswipe.SignInActivity"
-        android:label="activity_signin"
-        tools:layout="@layout/activity_signin" >
+    app:startDestination="@id/cardViewFragment">
+    <fragment
+        android:id="@+id/cardViewFragment"
+        android:name="com.uottawahack.chefswipe.CardViewFragment"
+        android:label="fragment_card_view"
+        tools:layout="@layout/fragment_card_view" >
         <action
-            android:id="@+id/action_signInActivity_to_swipeActivity"
-            app:destination="@id/swipeActivity"
-            app:enterAnim="@anim/fragment_fast_out_extra_slow_in"
-            app:exitAnim="@anim/fragment_fade_exit" />
-    </activity>
-    <activity
-        android:id="@+id/swipeActivity"
-        android:name="com.uottawahack.chefswipe.SwipeActivity"
-        android:label="SwipeActivity" >
-        <action
-            android:id="@+id/action_swipeActivity_to_savedRecipes"
+            android:id="@+id/action_cardViewFragment2_to_savedRecipes"
             app:destination="@id/savedRecipes"
-            app:enterAnim="@anim/fragment_fade_enter" />
-        <action
-            android:id="@+id/action_swipeActivity_to_settingsActivity"
-            app:destination="@id/settingsActivity" />
-    </activity>
-    <activity
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
         android:id="@+id/savedRecipes"
-        android:name="com.uottawahack.chefswipe.SavedRecipes"
-        android:label="activity_saved_recipes"
-        tools:layout="@layout/activity_saved_recipes" />
-    <activity
-        android:id="@+id/settingsActivity"
-        android:name="com.uottawahack.chefswipe.SettingsActivity"
-        android:label="activity_settings_page"
-        tools:layout="@layout/activity_settings_page" />
+        android:name="com.uottawahack.chefswipe.SavedRecipeFragment"
+        android:label="fragment_saved_recipe"
+        tools:layout="@layout/fragment_saved_recipe" />
 </navigation>

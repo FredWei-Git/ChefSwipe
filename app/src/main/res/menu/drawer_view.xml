@@ -6,17 +6,17 @@
         android:id="@+id/group1"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/item1"
+            android:id="@+id/homeItem"
             android:icon="@drawable/ic_round_home_24"
-            android:title="Home"
+            android:title="@string/navDrawerHome"
             android:checked="true" />
         <item
-            android:id="@+id/item2"
+            android:id="@+id/savedRecipeItem"
             android:icon="@drawable/ic_round_format_list_bulleted_24"
-            android:title="Saved Recipes" />
+            android:title="@string/navDrawerRecipe" />
         <item
-            android:id="@+id/item3"
+            android:id="@+id/configurationItem"
             android:icon="@drawable/ic_round_settings_24"
-            android:title="Settings" />
+            android:title="@string/navDrawerConfig" />
     </group>
 </menu>

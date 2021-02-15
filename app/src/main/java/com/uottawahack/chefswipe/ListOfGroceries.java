@@ -49,8 +49,6 @@ public class ListOfGroceries extends AppCompatActivity {
 
         });
         backBtn = (Button)findViewById(R.id.prevActivity);
-        backBtn.setOnClickListener(v -> {
-            onBackPressed();
-        });
+        backBtn.setOnClickListener(v -> onBackPressed());
     }
 }

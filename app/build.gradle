@@ -33,7 +33,8 @@ android {
 dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.3.3'
     implementation 'androidx.navigation:navigation-ui:2.3.3'
-    def lifecycle_version = "2.2.0"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    def lifecycle_version = "2.3.0"
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
     // LiveData
@@ -41,12 +42,12 @@ dependencies {
     // Lifecycles only (without ViewModel or LiveData)
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
-    implementation 'androidx.lifecycle:lifecycle-process:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-service:2.2.0'
+    implementation "androidx.lifecycle:lifecycle-process:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-service:$lifecycle_version"
+    //noinspection LifecycleAnnotationProcessorWithJava8
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
-
-    implementation 'androidx.fragment:fragment:1.2.5'
-    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.2.0'
+    implementation 'androidx.fragment:fragment:1.3.0'
 
     implementation platform('com.google.firebase:firebase-bom:26.4.0')
     implementation 'com.google.android.material:material:1.3.0'
