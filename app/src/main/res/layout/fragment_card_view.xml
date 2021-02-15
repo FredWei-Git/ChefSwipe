@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -64,9 +65,6 @@
                 app:layout_constraintVertical_bias="0.142" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </view>
-
-
-
     <Button
         android:id="@+id/nextButton"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"

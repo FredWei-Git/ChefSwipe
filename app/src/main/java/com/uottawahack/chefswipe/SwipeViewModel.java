@@ -64,8 +64,7 @@ public class SwipeViewModel extends AndroidViewModel {
     public LiveData<List<String>> getRecipeList() { return recipeList; }
     public LiveData<ArrayList<String>> getRecipeLinks() { return recipeLinks; }
 
-    public FirebaseAuth getAuth() { return mAuth; }
-
+    //Makes Recipe request
     private void makeSwipeRequest(boolean liked, String ingredients, String health) {
         // API Search Information
         String app_id = context.getString(R.string.api_id);
@@ -120,7 +119,7 @@ public class SwipeViewModel extends AndroidViewModel {
         //Send request to queue
         SwipeRepository.getInstance(context).addToRequestQueue(objectRequest);
     }
-
+    //Recipe Request
     void makeIngredientsRequest(boolean liked){
         // generating random food from random meal api
         String URL = "https://www.themealdb.com/api/json/v1/1/random.php";
@@ -148,6 +147,7 @@ public class SwipeViewModel extends AndroidViewModel {
         );
         SwipeRepository.getInstance(context).addToRequestQueue(objectRequest);
     }
+    //Saved Recipe Request
     void makeRecipeListRequest(){
         String user;
         user = mFirebaseUser.getUid(); //Do what you need to do with the id
