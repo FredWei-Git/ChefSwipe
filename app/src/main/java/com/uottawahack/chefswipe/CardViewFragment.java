@@ -118,7 +118,7 @@ public class CardViewFragment extends Fragment implements View.OnClickListener,
             }
             return true;
         }
-        view.dispatchTouchEvent(e);
+        //view.dispatchTouchEvent(e);
         return true;
     }
 
