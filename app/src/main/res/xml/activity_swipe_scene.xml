@@ -5,7 +5,7 @@
 
     <ConstraintSet android:id="@+id/start" />
     <ConstraintSet android:id="@+id/rightSwipe">
-        <Constraint android:id="@+id/recipeCardView">
+        <Constraint>
             <Layout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

@@ -16,7 +16,6 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
         android:layout_width="153dp"
         android:layout_height="52dp"
         android:fontFamily="sans-serif-thin"

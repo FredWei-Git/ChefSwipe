@@ -1,6 +1,5 @@
 package com.uottawahack.chefswipe;
 
-import android.database.DataSetObserver;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,32 +9,19 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
+import com.google.android.material.card.MaterialCardView;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-
-public class CardViewFragment extends Fragment implements View.OnClickListener,
-        View.OnTouchListener{
+public class CardViewFragment extends Fragment implements View.OnClickListener {
     private SwipeViewModel vm;
-    private MaterialCardViewTouchListener card;
 
     //View Pager for CardView
     private ViewPager2 viewPager;
     private static final int NUM_PAGES = 2;
 
-    //Location of first touch
-    private float previousX = 0;
 
     public CardViewFragment() {
         // Required empty public constructor
@@ -61,10 +47,6 @@ public class CardViewFragment extends Fragment implements View.OnClickListener,
         FragmentStateAdapter pagerAdapter = new ScreenSlidePagerAdapter(this);
         viewPager.setAdapter(pagerAdapter);
 
-        //Finds SwipeCardView
-        card = view.findViewById(R.id.recipeCardView);
-        //Adds TouchListener to Card to respond to user swipes
-        card.setOnTouchListener(this);
         //Instantiate view model
         vm = new ViewModelProvider(this).get(SwipeViewModel.class);
         //Makes Recipe request
@@ -92,36 +74,6 @@ public class CardViewFragment extends Fragment implements View.OnClickListener,
             }
         }
     }
-
-    @Override
-    public boolean onTouch(View view, MotionEvent e) {
-        view.onTouchEvent(e);
-        view.performClick();
-        if (viewPager.getCurrentItem() != 1){
-            //Gets x and y at the start of touch
-            if (e.getAction() == MotionEvent.ACTION_DOWN){
-                previousX = e.getX();
-            }
-            //Calculates change in x and y upon lifting touch
-            if (e.getAction() == MotionEvent.ACTION_UP) {
-                float x = e.getX();
-                float dx = x - previousX;
-                if (dx > 300) {
-                    //Animates card and refreshes recipe on swipe
-                    ((MotionLayout) card.getParent()).transitionToEnd();
-                    vm.makeIngredientsRequest(true);
-                    Log.e("Liked", "dx:" + dx);
-                } else if (dx < -300){
-                    vm.makeIngredientsRequest(false);
-                    Log.e("Passed", "dx:" + dx);
-                }
-            }
-            return true;
-        }
-        //view.dispatchTouchEvent(e);
-        return true;
-    }
-
 
     private static class ScreenSlidePagerAdapter extends FragmentStateAdapter {
         public ScreenSlidePagerAdapter(@NonNull Fragment fragment) {

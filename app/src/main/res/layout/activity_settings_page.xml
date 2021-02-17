@@ -127,7 +127,6 @@
         app:layout_constraintVertical_bias="0.638" />
 
     <TextView
-        android:id="@+id/macrosTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Macros"
@@ -140,7 +139,6 @@
         app:layout_constraintVertical_bias="0.129" />
 
     <TextView
-        android:id="@+id/editProfileTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Edit Profile"
@@ -153,7 +151,6 @@
         app:layout_constraintVertical_bias="0.023" />
 
     <TextView
-        android:id="@+id/allergiesAndLimitsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Allergies/Limits"
@@ -166,7 +163,6 @@
         app:layout_constraintVertical_bias="0.431" />
 
     <ImageButton
-        android:id="@+id/backButtonProfilePage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:tint="#5E35B1"
@@ -179,14 +175,11 @@
         app:srcCompat="@drawable/abc_vector_test" />
 
     <Button
-        android:id="@+id/savedRecipesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="154dp"
-        android:layout_marginLeft="154dp"
         android:layout_marginTop="108dp"
         android:layout_marginEnd="165dp"
-        android:layout_marginRight="165dp"
         android:layout_marginBottom="91dp"
         android:text="Saved Recipes"
         app:layout_constraintBottom_toBottomOf="parent"

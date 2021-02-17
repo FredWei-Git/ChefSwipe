@@ -8,8 +8,7 @@
     app:layoutDescription="@xml/activity_swipe_scene"
     tools:context=".CardViewFragment">
 
-    <view class="com.uottawahack.chefswipe.MaterialCardViewTouchListener"
-        android:id="@+id/recipeCardView"
+    <com.google.android.material.card.MaterialCardView
 
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -29,9 +28,10 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/cardViewPager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"/>
 
-    </view>
+    </com.google.android.material.card.MaterialCardView>
     <Button
         android:id="@+id/nextButton"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
@@ -72,7 +72,6 @@
         app:layout_constraintStart_toEndOf="@+id/nextButton" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

@@ -19,7 +19,4 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.ChefSwipe.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.ChefSwipe.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

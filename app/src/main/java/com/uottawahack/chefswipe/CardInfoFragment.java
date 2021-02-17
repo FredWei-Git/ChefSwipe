@@ -1,22 +1,18 @@
 package com.uottawahack.chefswipe;
 
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CardInfoFragment extends Fragment {
     //View Model of CardView Fragments
@@ -47,10 +43,8 @@ public class CardInfoFragment extends Fragment {
     }
     //Updates UI when observed Data is changed
     private void updateUI(RecipeInfo recipe, View view) {
-        TextView recipeInfoName = view.findViewById(R.id.recipeTitle);
         ListView ingredientsList = view.findViewById(R.id.ingredientsList);
-        //Updates Recipe Name
-        recipeInfoName.setText(recipe.getName());
+        ingredientsList.requestDisallowInterceptTouchEvent(true);
         //Contains the list of ingredients
         ArrayList<String> ingredients = recipe.getIngredients();
         //Array Adapter

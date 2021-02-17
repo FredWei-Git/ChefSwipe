@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/navigation_drawer">
-    <group
-        android:id="@+id/group1">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group>
         <item
             android:id="@+id/homeItem"
             android:title="@string/navDrawerHome" />
         <item
             android:id="@+id/savedRecipeItem"
             android:title="@string/navDrawerRecipe" />
-        <item
-            android:id="@+id/configurationItem"
-            android:title="@string/navDrawerConfig" />
+        <item android:title="@string/navDrawerConfig" />
     </group>
 </menu>
