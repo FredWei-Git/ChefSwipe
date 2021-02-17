@@ -15,7 +15,7 @@ public class SettingsActivity extends AppCompatActivity {
             sugarConscious, peanutFree, treeNutFree, alcoholFree = false;
 
     Button savedRecipes;
-
+    //TODO: Change into Fragment  and add to navigation graph and drawer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

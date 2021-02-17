@@ -18,6 +18,7 @@ public class ListOfGroceries extends AppCompatActivity {
     Button saveInput;
     Button clear;
     Button backBtn;
+    //TODO: Change into fragment and add to navigation graph and drawer
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
