@@ -12,4 +12,8 @@
     <string name="logo">knife fork and plate logo</string>
     <!-- Strings used in CardView Fragment-->
     <string name="limitText">Recipe limit exhausted refresh in a minute.</string>
+    <!--Strings used in CardInfoFragment-->
+    <string name="namePlaceholderString">Recipe Name Placeholder</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="attributions">Attributions</string>
 </resources>

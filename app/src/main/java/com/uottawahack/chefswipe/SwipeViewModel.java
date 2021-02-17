@@ -38,10 +38,10 @@ public class SwipeViewModel extends AndroidViewModel {
     private static Context context;
 
     //Mutable data
-    private final MutableLiveData<RecipeInfo> recipeLiveData = new MutableLiveData<>();
+    private static final MutableLiveData<RecipeInfo> recipeLiveData = new MutableLiveData<>();
 
-    private final MutableLiveData<List<String>> recipeList = new MutableLiveData<>();
-    private final MutableLiveData<ArrayList<String>> recipeLinks = new MutableLiveData<>();
+    private static final MutableLiveData<List<String>> recipeList = new MutableLiveData<>();
+    private static final MutableLiveData<ArrayList<String>> recipeLinks = new MutableLiveData<>();
     //Placeholder ingredient
     private String randomFood = "chicken";
     private SavedStateHandle state;

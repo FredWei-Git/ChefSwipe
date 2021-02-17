@@ -3,40 +3,36 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:motion="http://schemas.android.com/apk/res-auto">
 
-
-
-    <ConstraintSet android:id="@+id/end">
-        <Constraint
-            android:id="@+id/recipeCardView"
-            motion:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            motion:layout_constraintBottom_toTopOf="@+id/infoButton"
-            android:layout_marginEnd="8dp"
-            motion:layout_constraintTop_toBottomOf="@+id/logoView"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            motion:layout_constraintStart_toStartOf="parent"
-            android:rotationY="0"
-            android:rotation="30" />
-    </ConstraintSet>
     <ConstraintSet android:id="@+id/start" />
+    <ConstraintSet android:id="@+id/rightSwipe">
+        <Constraint android:id="@+id/recipeCardView">
+            <Layout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+
+                android:layout_marginBottom="8dp"
+
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintBottom_toTopOf="@+id/infoButton"
+                motion:layout_constraintTop_toBottomOf="parent"
+                motion:layout_constraintStart_toStartOf="parent"/>
+            <Transform
+                android:rotation="30"/>
+        </Constraint>
+    </ConstraintSet>
     <Transition
         motion:constraintSetStart="@+id/start"
-        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetEnd="@+id/rightSwipe"
         motion:autoTransition="none" >
-
     </Transition>
-    <ConstraintSet android:id="@+id/endend" />
+    <ConstraintSet android:id="@+id/end" />
     <Transition
-        motion:constraintSetStart="@+id/end"
-        motion:constraintSetEnd="@+id/endend"
+        motion:constraintSetStart="@+id/rightSwipe"
+        motion:constraintSetEnd="@+id/end"
         motion:autoTransition="animateToEnd" />
-    <Transition
-        motion:constraintSetStart="@+id/endend"
-        motion:constraintSetEnd="@+id/start"
-        motion:autoTransition="jumpToEnd" />
-
 </MotionScene>

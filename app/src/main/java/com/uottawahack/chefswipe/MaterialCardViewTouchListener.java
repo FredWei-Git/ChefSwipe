@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import com.google.android.material.card.MaterialCardView;
 
 public class MaterialCardViewTouchListener extends MaterialCardView {
+    //TODO: Change onInterceptTouchEvent so that when it is on second page view touches aren't intercepted
     public MaterialCardViewTouchListener(Context context) {
         super(context);
     }
