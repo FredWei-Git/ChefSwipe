@@ -1,7 +1,17 @@
 # ChefSwipe
 
-Tags that can be filtered with :balanced, high protein, low-fat, low-carb, 
-vegan, vegetarian, sugar-conscious, peanut-free, tree-nut-free, alcohol-free
+Tinder for Recipes
+As the title suggests you swipe for a recipe that catches your eyes and we save it for you
 
-Example api call:
-https://api.edamam.com/search?q=chicken&app_id=3c7db970&app_key=b9151b2fbebd7585310c64eaf7373789&from=0&to=3&calories=591-722&health=alcohol-free
+Additionally the user can filter recipes based off of dietary restrictions and ingredients that
+they currently have at home or if the user wants to search for a recipe for a particular dish that
+is also possible
+
+Tags: balanced, high protein, low-fat, low-carb, 
+vegan, vegetarian, sugar-conscious, peanut-free, tree-nut-free, alcohol-free
+Ingredients: Any
+Dishes: Any
+
+
+
+
