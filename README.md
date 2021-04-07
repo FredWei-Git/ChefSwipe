@@ -1,7 +1,7 @@
 # ChefSwipe
 
-Tinder for Recipes
-As the title suggests you swipe for a recipe that catches your eyes and we save it for you
+Tinder for Recipes; swipe for a recipe that catches your eyes 
+and we save it for you
 
 Additionally the user can filter recipes based off of dietary restrictions and ingredients that
 they currently have at home or if the user wants to search for a recipe for a particular dish that

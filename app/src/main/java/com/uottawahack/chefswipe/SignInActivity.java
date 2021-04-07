@@ -35,7 +35,7 @@ public class SignInActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
-
+        //Set button listener
         findViewById(R.id.signInButton).setOnClickListener(this);
 
         GoogleSignInOptions gso = new GoogleSignInOptions
@@ -43,7 +43,7 @@ public class SignInActivity extends AppCompatActivity implements
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-
+        //Gets firebase user and
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         mAuth = FirebaseAuth.getInstance();
 
