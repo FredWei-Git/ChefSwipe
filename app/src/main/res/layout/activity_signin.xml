@@ -16,8 +16,8 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:layout_width="153dp"
-        android:layout_height="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-thin"
         android:text="@string/welcome"
         android:textColor="#673AB7"
