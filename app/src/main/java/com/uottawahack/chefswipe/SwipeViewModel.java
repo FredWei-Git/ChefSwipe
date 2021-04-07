@@ -79,11 +79,7 @@ public class SwipeViewModel extends AndroidViewModel {
                     // Create RecipeInfo Object
                     JSONArray arr;
                     try {
-                        // gets the array of recipes in hits json array "[]"
-                        arr = response.getJSONArray("hits");
-                        //Updating livedata
-                        recipeLiveData.setValue(new RecipeInfo(arr, response));
-                        //Adds recipe to user's database only if theyliked it
+                        //Adds previous recipe to user's database only if they liked it
                         if (liked){
                             if (mFirebaseUser != null) {
                                 String user;
@@ -93,19 +89,23 @@ public class SwipeViewModel extends AndroidViewModel {
                                                 recipeLiveData.getValue())
                                                 .getRecipeURL() != null) {
                                     Map<String, Object> savedRecipes = new HashMap<>();
-                                    savedRecipes.put("Recipe Name", randomFood);
+                                    savedRecipes.put("Recipe Name", recipeLiveData.getValue().getName());
                                     savedRecipes.put(
                                             "Recipe Link",
                                             recipeLiveData.getValue()
-                                            .getRecipeURL());
+                                                    .getRecipeURL());
                                     db.collection("users")
                                             .document(user)
                                             .collection("SavedRecipes")
-                                            .document(randomFood)
+                                            .document((String) savedRecipes.get("Recipe Name"))
                                             .set(savedRecipes);
                                 }
                             }
                         }
+                        // gets the array of recipes in hits json array "[]"
+                        arr = response.getJSONArray("hits");
+                        //Updating livedata
+                        recipeLiveData.setValue(new RecipeInfo(arr, response));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -115,7 +115,7 @@ public class SwipeViewModel extends AndroidViewModel {
         //Send request to queue
         SwipeRepository.getInstance(context).addToRequestQueue(objectRequest);
     }
-    //Recipe Request
+    //Generates a random main ingredient
     void makeIngredientsRequest(boolean liked){
         // generating random food from random meal api
         String URL = "https://www.themealdb.com/api/json/v1/1/random.php";
